@@ -1,0 +1,58 @@
+﻿@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="text-center">
+    <h4 class="display-4">Welcome to jQuery Ajax Calling Difference Between Async True VS Async False </h4>
+    <br />
+    <input type="button" onclick="jQueryAjaxCalling(true)" value="jQuery Ajax Calling with async: true" class="btn btn-success" /> | 
+    <input type="button" onclick="jQueryAjaxCalling(false)" value="jQuery Ajax Calling with async: false" class="btn btn-danger" />
+</div>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            console.log("Done");
+        });
+        function jQueryAjaxCalling(asyncType) {
+            alert("Start- jQueryAjaxCalling()")
+            debugger;
+            $.ajax({
+                url: '/JQueryAjaxCalling/Response1',
+                method: 'POST',
+                dataType: 'json',
+                async: asyncType,
+                contentType: 'application/json',
+                success: function (response) {
+                    debugger;
+                    console.log(response.message);
+                    alert(response.message);
+                },
+                error: function (request, status, error) {
+                    debugger;
+                    console.log(request.responseText);
+                    alert(request.responseText);
+                }
+            });
+            debugger;
+            $.ajax({
+                url: '/JQueryAjaxCalling/Response2',
+                method: 'POST',
+                dataType: 'json',
+                async: asyncType,
+                contentType: 'application/json',
+                success: function (response) {
+                    debugger;
+                    console.log(response.message);
+                    alert(response.message);
+                },
+                error: function (request, status, error) {
+                    debugger;
+                    console.log(request.responseText);
+                    alert(request.responseText);
+                }
+            })
+            alert("END- jQueryAjaxCalling()")
+        }
+    </script>
+}
